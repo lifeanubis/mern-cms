@@ -14,10 +14,6 @@ export default function Home() {
   const imageGlobal =
     "https://thumbs.dreamstime.com/z/banner-brilliant-cut-diamonds-flawless-perfect-jewelry-136807281.jpg"
 
-  if (postUrl === undefined || postUrl === null) {
-    return null
-  }
-
   useEffect(() => {
     if (postUrl === undefined || postUrl === null) {
       return null
