@@ -42,7 +42,12 @@ export default function Home() {
   return (
     <div>
       <div className="flex gap-10 w-full h-full justify-center absolute top-52 left-52 ">
-        <Link href={"/dashboard"}>
+        <Link href={"/guide"}>
+          <button className="p-4 bg-slate-600 ">
+            Let me guid you :-Readme
+          </button>
+        </Link>
+        <Link href={"/dashboard/diamond-card-page"}>
           <button className="p-4 bg-slate-600 ">Enter as Admin</button>
         </Link>
 
