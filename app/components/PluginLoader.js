@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-// import { } from "../pluginsw/hello-world"
 
 const PluginLoader = () => {
   const [pluginComponents, setPluginComponents] = useState([])
@@ -16,14 +15,13 @@ const PluginLoader = () => {
         const loadedComponents = await Promise.all(
           plugins?.flat()?.map(async (plugin) => {
             if (plugin.frontend?.componentPath) {
-              const module = await import(
+              const moduleVar = await import(
                 `@/pluginsw/${plugin?.name}/${plugin?.frontend?.componentPath}`
               )
-              return { name: plugin?.name, Component: module?.default }
+              return { name: plugin?.name, Component: moduleVar?.default }
             }
           })
         )
-        // console.log(plugins?.flat(), "--------")
 
         setPluginComponents(loadedComponents.filter(Boolean))
       } catch (error) {
@@ -41,7 +39,7 @@ const PluginLoader = () => {
           style={{ marginBottom: "20px", backgroundColor: "red" }}
         >
           {/* {console.log(pluginComponents, "--------")} */}
-          <h3>{name}-asdads</h3>
+          <h3>{name}</h3>
           <Component />
         </div>
       ))}
