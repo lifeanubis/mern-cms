@@ -41,6 +41,7 @@ export default function CardEditModal({
       name: diamondName,
       rarity: diamondRarity,
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const body = {
