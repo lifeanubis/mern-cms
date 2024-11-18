@@ -24,9 +24,9 @@ const Header = () => {
     }
   }, [postUrl])
 
-  if (!postUrl) {
-    return null
-  }
+  // if (postUrl) {
+  //   return null
+  // }
 
   return (
     <div className="flex justify-end flex-1 bg-green-800 w-full">

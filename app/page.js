@@ -11,23 +11,21 @@ export default function Home() {
   const [diamondData, setDiamondData] = useState()
   const [heroImageData, setHeroImageData] = useState()
   const postUrl = BASE_LOCAL_URL
-  console.log(postUrl, "-----aasdad--")
   const imageGlobal =
     "https://thumbs.dreamstime.com/z/banner-brilliant-cut-diamonds-flawless-perfect-jewelry-136807281.jpg"
 
-  const getDiamondData = async () => {
-    try {
-      const diamondDataFetch = await axios.get(`${postUrl}/api/diamonds`)
-      const heroImageDataFetch = await axios.get(`${postUrl}/api/banner`)
-      setDiamondData(diamondDataFetch?.data)
-      setHeroImageData(heroImageDataFetch?.data[0]?.url)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
   useEffect(() => {
-    if (postUrl !== undefined) {
+    if (postUrl !== undefined && postUrl !== null) {
+      const getDiamondData = async () => {
+        try {
+          const diamondDataFetch = await axios.get(`${postUrl}/api/diamonds`)
+          const heroImageDataFetch = await axios.get(`${postUrl}/api/banner`)
+          setDiamondData(diamondDataFetch?.data)
+          setHeroImageData(heroImageDataFetch?.data[0]?.url)
+        } catch (error) {
+          console.log(error)
+        }
+      }
       getDiamondData()
     }
   }, [postUrl])
@@ -57,7 +55,7 @@ export default function Home() {
     )
   }
 
-  if (postUrl === undefined) {
+  if (postUrl === undefined || postUrl === null) {
     return null
   }
 

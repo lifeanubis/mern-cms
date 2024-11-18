@@ -1,5 +1,5 @@
-export default function ProductPage({ params }) {
-  const { routeName } = params
+export default async function ProductPage({ params }) {
+  const { routeName } = await params
 
   return (
     <div>
