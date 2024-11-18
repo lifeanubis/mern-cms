@@ -1,14 +1,16 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { BASE_LOCAL_URL } from "../lib/utils/constants"
 
 const PluginLoader = () => {
   const [pluginComponents, setPluginComponents] = useState([])
+  const postUrl = BASE_LOCAL_URL
 
   useEffect(() => {
     const loadPlugins = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/plugins")
+        const response = await fetch(`${postUrl}/api/plugins`)
         if (!response.ok) throw new Error("Failed to fetch plugins")
         const plugins = await response.json()
 

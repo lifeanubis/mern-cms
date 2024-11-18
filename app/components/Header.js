@@ -3,12 +3,14 @@
 import axios from "axios"
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import { BASE_LOCAL_URL } from "../lib/utils/constants"
 
 const Header = () => {
   const [headerData, setHeaderData] = useState()
+  const postUrl = BASE_LOCAL_URL
 
   const getHeaderData = async () => {
-    const headerData = await axios.get("http://localhost:3000/api/header")
+    const headerData = await axios.get(`${postUrl}/api/header`)
     // console.log(headerData.data, "header-=------")
     setHeaderData(headerData.data)
   }

@@ -2,17 +2,17 @@
 
 import AddCardModal from "@/app/components/AddCardModal"
 import CardEditModal from "@/app/components/CardEditModal"
+import { BASE_LOCAL_URL } from "@/app/lib/utils/constants"
 import { AddCircle, Edit } from "@mui/icons-material"
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 
 const DiamonCardEditPage = () => {
   const [diamondData, setDiamondData] = useState()
+  const postUrl = BASE_LOCAL_URL
 
   const getDiamondData = async () => {
-    const diamondDataFetch = await axios.get(
-      "http://localhost:3000/api/diamonds"
-    )
+    const diamondDataFetch = await axios.get(`${postUrl}api/diamonds`)
     // console.log(diamondData.data, "header-=------")
     setDiamondData(diamondDataFetch?.data)
   }

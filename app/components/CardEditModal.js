@@ -15,6 +15,7 @@ import { useEffect, useState } from "react"
 import { Delete, Edit } from "@mui/icons-material"
 import { TextField } from "@mui/material"
 import axios from "axios"
+import { BASE_LOCAL_URL } from "../lib/utils/constants"
 
 export default function CardEditModal({
   id,
@@ -24,6 +25,7 @@ export default function CardEditModal({
   refetch,
 }) {
   const [open, setOpen] = useState(false)
+  const postUrl = BASE_LOCAL_URL
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen)
@@ -52,10 +54,7 @@ export default function CardEditModal({
   }
   const updateData = async () => {
     try {
-      const result = await axios.patch(
-        "http://localhost:3000/api/diamonds",
-        body
-      )
+      const result = await axios.patch(`${postUrl}/api/diamonds`, body)
     } catch (error) {
       console.error(
         "Error deleting card:",
@@ -66,7 +65,7 @@ export default function CardEditModal({
 
   const deleteCard = async () => {
     try {
-      const result2 = await axios.delete("http://localhost:3000/api/diamonds", {
+      const result2 = await axios.delete(`${postUrl}/api/diamonds`, {
         data: body,
       })
 

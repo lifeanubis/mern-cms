@@ -1,16 +1,18 @@
 "use client"
 
+import { BASE_LOCAL_URL } from "@/app/lib/utils/constants"
 import { TextField } from "@mui/material"
 import axios from "axios"
 import { useEffect, useState } from "react"
 
 const AddBannerPage = () => {
-  const postUrl = "http://localhost:3000/api/banner"
+  const postUrl = BASE_LOCAL_URL
+
   const [url, setUrl] = useState("")
   const [imageId, setImageId] = useState()
 
   const getData = async () => {
-    const heroImageData = await axios.get("http://localhost:3000/api/banner")
+    const heroImageData = await axios.get(`${postUrl}api/banner`)
     setImageId(heroImageData?.data[0]?._id)
   }
 

@@ -8,6 +8,7 @@ import DialogContentText from "@mui/material/DialogContentText"
 import DialogTitle from "@mui/material/DialogTitle"
 import axios from "axios"
 import { Fragment, useState } from "react"
+import { BASE_LOCAL_URL } from "../lib/utils/constants"
 
 export default function EditHeaderDialog({
   refetch,
@@ -19,7 +20,7 @@ export default function EditHeaderDialog({
   const [title, setTitle] = useState("")
   const [pathName, setPathName] = useState("")
 
-  const postUrl = "http://localhost:3000/api/header"
+  const postUrl = BASE_LOCAL_URL
 
   const handleClickOpen = () => {
     setOpen(true)
@@ -38,7 +39,7 @@ export default function EditHeaderDialog({
   const handleSubmit = async () => {
     try {
       if (title !== "" && pathName !== "") {
-        const result = await axios.patch(postUrl, body)
+        const result = await axios.patch(`${postUrl}/api/header`, body)
         console.log(result, body, "--------")
       }
     } catch (error) {
@@ -56,7 +57,7 @@ export default function EditHeaderDialog({
   // }
   const handleDelete = async () => {
     try {
-      const result2 = await axios.delete("http://localhost:3000/api/header", {
+      const result2 = await axios.delete(`${postUrl}/api/header`, {
         data: body,
       })
 

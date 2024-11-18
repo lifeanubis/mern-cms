@@ -5,22 +5,19 @@ import { Card, Paper } from "@mui/material"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import PluginLoader from "./components/PluginLoader"
+import { BASE_LOCAL_URL } from "./lib/utils/constants"
 
 export default function Home() {
   const [diamondData, setDiamondData] = useState()
   const [heroImageData, setHeroImageData] = useState()
-
+  const postUrl = BASE_LOCAL_URL
   const imageGlobal =
     "https://thumbs.dreamstime.com/z/banner-brilliant-cut-diamonds-flawless-perfect-jewelry-136807281.jpg"
 
   const getDiamondData = async () => {
-    const diamondDataFetch = await axios.get(
-      "http://localhost:3000/api/diamonds"
-    )
+    const diamondDataFetch = await axios.get(`${postUrl}/api/diamonds`)
     // console.log(diamondData.data, "header-=------")
-    const heroImageDataFetch = await axios.get(
-      "http://localhost:3000/api/banner"
-    )
+    const heroImageDataFetch = await axios.get(`${postUrl}/api/banner`)
     setDiamondData(diamondDataFetch?.data)
     setHeroImageData(heroImageDataFetch?.data[0]?.url)
   }
@@ -54,6 +51,10 @@ export default function Home() {
     )
   }
 
+  if (!BASE_LOCAL_URL) {
+    return null
+  }
+
   return (
     <div className="">
       <div
@@ -70,7 +71,6 @@ export default function Home() {
           />
         </div>
         <div className="bg-yellow-800">
-          adada
           <PluginLoader />
           {/* <CardUI /> */}
         </div>

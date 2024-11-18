@@ -1,12 +1,14 @@
 "use client"
 
 import EditHeaderDialog from "@/app/components/EditHeaderDialog"
+import { BASE_LOCAL_URL } from "@/app/lib/utils/constants"
 import { TextField } from "@mui/material"
 import axios from "axios"
 import { useEffect, useState } from "react"
 
 const AddHeaderPage = () => {
-  const postUrl = "http://localhost:3000/api/header"
+  const postUrl = BASE_LOCAL_URL
+
   const [headerData, setHeaderData] = useState()
 
   const [title, setTitle] = useState("")
@@ -18,12 +20,12 @@ const AddHeaderPage = () => {
   }
   const handleSubmit = async () => {
     if (title !== "" && pathName !== "") {
-      const result = await axios.post(postUrl, body)
+      const result = await axios.post(`${postUrl}/api/header`, body)
     }
   }
 
   const getHeaderData = async () => {
-    const headerData = await axios.get(postUrl)
+    const headerData = await axios.get(`${postUrl}/api/header`)
     setHeaderData(headerData.data)
   }
 

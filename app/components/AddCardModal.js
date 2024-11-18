@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import { AddCircle, Edit } from "@mui/icons-material"
 import { TextField } from "@mui/material"
 import axios from "axios"
+import { BASE_LOCAL_URL } from "../lib/utils/constants"
 
 export default function AddCardModal({
   id,
@@ -15,7 +16,7 @@ export default function AddCardModal({
   refetch,
 }) {
   const [open, setOpen] = useState(false)
-
+  const postUrl = BASE_LOCAL_URL
   const toggleDrawer = (newOpen) => {
     setOpen(newOpen)
   }
@@ -34,10 +35,7 @@ export default function AddCardModal({
         name: editData.name,
         rarity: editData.rarity,
       }
-      const result = await axios.post(
-        "http://localhost:3000/api/diamonds",
-        body
-      )
+      const result = await axios.post(`${postUrl}/api/diamonds`, body)
       console.log(body, result, "=========-")
     } catch (error) {
       console.error(
