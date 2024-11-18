@@ -25,17 +25,21 @@ const AddHeaderPage = () => {
   }
 
   const getHeaderData = async () => {
-    const headerData = await axios.get(`${postUrl}/api/header`)
-    setHeaderData(headerData.data)
+    try {
+      const headerData = await axios.get(`${postUrl}/api/header`)
+      setHeaderData(headerData.data)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   useEffect(() => {
     getHeaderData()
-  }, [])
+  }, [postUrl])
 
   const CardUI = () => {
     return (
-      <div className="grid grid-cols-3 gap-10 ">
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-10 ">
         {headerData?.map((header, index) => {
           return (
             <div

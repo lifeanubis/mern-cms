@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* @import "react-big-calendar/lib/sass/styles"; */
 
 :root {
   --background: #ffffff;
@@ -18,4 +19,23 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+.MuiTableCell-root {
+  color: white !important;
+}
+.embla {
+  overflow: hidden;
+  row-gap: 10rem !important;
+}
+.embla__container {
+  display: flex;
+  row-gap: 10rem !important;
+}
+.embla__slide {
+  flex: 0 0 50%;
+  min-width: 0;
+  max-width: 20rem;
+  margin-right: 2rem !important;
+  /* row-gap: 10rem !important; */
+  /* max-height: 20rem; */
 }

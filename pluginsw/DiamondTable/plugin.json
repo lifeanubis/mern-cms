@@ -1,8 +1,8 @@
 {
-  "name": "HelloWorldButton",
+  "name": "DiamondTable",
   "description": "A plugin that adds a button to alert 'Hello World' on click.",
   "version": "1.0.0",
   "frontend": {
-    "componentPath": "components/HelloWorldButton.js"
+    "componentPath": "components/DiamondTable.js"
   }
 }

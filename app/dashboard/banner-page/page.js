@@ -12,24 +12,25 @@ const AddBannerPage = () => {
   const [imageId, setImageId] = useState()
 
   const getData = async () => {
-    const heroImageData = await axios.get(`${postUrl}api/banner`)
-    setImageId(heroImageData?.data[0]?._id)
+    try {
+      const heroImageData = await axios.get(`${postUrl}/api/banner`)
+      setImageId(heroImageData?.data?.[0]?._id)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   useEffect(() => {
     getData()
-  }, [])
+  }, [postUrl])
 
   const handleSubmit = async () => {
     const body = {
       imageId: imageId,
       url: url,
     }
-    // console.log(imageId, "-----------")
-
     if (url !== "") {
       const result = await axios.patch(postUrl, body)
-      // console.log(result)
     }
   }
 
@@ -45,7 +46,6 @@ const AddBannerPage = () => {
               variant="outlined"
               className="bg-slate-400 "
               fullWidth={true}
-              // onPaste={(e) => console.log(e.target.value)}
               onChange={(e) => setUrl(e.target.value)}
             />
           </div>

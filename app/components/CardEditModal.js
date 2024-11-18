@@ -3,14 +3,6 @@
 import Box from "@mui/material/Box"
 import Drawer from "@mui/material/Drawer"
 import Button from "@mui/material/Button"
-import List from "@mui/material/List"
-import Divider from "@mui/material/Divider"
-import ListItem from "@mui/material/ListItem"
-import ListItemButton from "@mui/material/ListItemButton"
-import ListItemIcon from "@mui/material/ListItemIcon"
-import ListItemText from "@mui/material/ListItemText"
-import InboxIcon from "@mui/icons-material/MoveToInbox"
-import MailIcon from "@mui/icons-material/Mail"
 import { useEffect, useState } from "react"
 import { Delete, Edit } from "@mui/icons-material"
 import { TextField } from "@mui/material"
@@ -27,7 +19,7 @@ export default function CardEditModal({
   const [open, setOpen] = useState(false)
   const postUrl = BASE_LOCAL_URL
 
-  const toggleDrawer = (newOpen) => () => {
+  const toggleDrawer = (newOpen) => {
     setOpen(newOpen)
   }
 
@@ -79,8 +71,8 @@ export default function CardEditModal({
   }
 
   const DrawerList = (
-    <Box sx={{ width: 700 }} role="presentation">
-      <div id="add-header-container" className="w-full h-full">
+    <Box sx={{ width: 700, backgroundColor: "black" }} role="presentation">
+      <div id="add-header-container" className="w-1/2 lg:w-full h-full">
         <div className=" bg-slate-950">
           <div className=" p-4  w-full ">
             <h1 className="text-3xl text-white">Diamond Name </h1>
@@ -159,6 +151,12 @@ export default function CardEditModal({
                 </h1>
               </button>
             </div>
+            <button
+              className="bg-orange-800 text-white hover:opacity-75 w-1/2 h-10 rounded-xl lg:hidden mt-10 cursor-pointer "
+              onClick={() => toggleDrawer(false)}
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>
@@ -167,13 +165,13 @@ export default function CardEditModal({
 
   return (
     <div>
-      <Button onClick={toggleDrawer(true)} className="text-white">
+      <Button onClick={() => toggleDrawer(true)} className="text-white">
         <h1 className="text-white font-bold flex justify-center items-center p-2 gap-x-2 cursor-pointer">
           Edit Card
           <Edit fontSize="medium" />
         </h1>
       </Button>
-      <Drawer open={open} onClose={toggleDrawer(false)}>
+      <Drawer open={open} onClose={() => toggleDrawer(false)}>
         {DrawerList}
       </Drawer>
     </div>

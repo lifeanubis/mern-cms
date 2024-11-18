@@ -5,6 +5,8 @@ import "./globals.css"
 import Header from "./components/Header"
 import { usePathname, useRouter } from "next/navigation"
 import SideNav from "./components/SideNav"
+import { ArrowCircleLeft, ArrowCircleRight } from "@mui/icons-material"
+import { useState } from "react"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,27 +26,59 @@ const geistMono = localFont({
 
 export default function RootLayout({ children }) {
   const pathName = usePathname()
-  // console.log(router)
+  const [showSideNav, setShowSideNav] = useState(false)
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
         <div className="grid absolute grid-cols-12 w-full">
-          {pathName.includes("/dashboard") ? (
+          {pathName.includes("/dashboard") && (
             <div className=" top-0 col-span-3 ">
-              <SideNav />
+              <div className=" top-0 col-span-3 lg:block hidden  ">
+                <SideNav />
+              </div>
+              <>
+                <div className="flex xl:hidden w-1/2 absolute left-0 z-50 ">
+                  <div
+                    className={`w-full ${
+                      showSideNav === true ? "block" : "hidden"
+                    } `}
+                  >
+                    <SideNav />
+                  </div>
+                  <div>
+                    <ArrowCircleRight
+                      className={` ${
+                        showSideNav === false ? "block" : "hidden"
+                      } `}
+                      fontSize="large"
+                      onClick={() => setShowSideNav(true)}
+                    />
+                    <ArrowCircleLeft
+                      className={` ${
+                        showSideNav === true ? "block" : "hidden"
+                      } `}
+                      fontSize="large"
+                      onClick={() => setShowSideNav(false)}
+                    />
+                  </div>
+                </div>
+              </>
             </div>
-          ) : (
-            <div className="top-0 w-full col-span-12">
+          )}
+          {(pathName.includes("/user") || pathName.includes("/routes")) && (
+            <div className=" top-0 col-span-12  ">
               <Header />
             </div>
           )}
+
           <div
             className={`relative p-4 ${
               pathName.includes("/dashboard") &&
               `bg-gradient-to-r  from-teal-950 to-sky-950`
-            } w-full col-span-9  mx-auto `}
+            } w-full lg:col-span-9 col-span-12  mx-auto `}
           >
             {children}
           </div>

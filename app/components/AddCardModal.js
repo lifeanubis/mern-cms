@@ -4,7 +4,7 @@ import Drawer from "@mui/material/Drawer"
 import Button from "@mui/material/Button"
 import { useEffect, useState } from "react"
 import { AddCircle, Edit } from "@mui/icons-material"
-import { TextField } from "@mui/material"
+import { TextField, useMediaQuery, useTheme } from "@mui/material"
 import axios from "axios"
 import { BASE_LOCAL_URL } from "../lib/utils/constants"
 
@@ -20,6 +20,8 @@ export default function AddCardModal({
   const toggleDrawer = (newOpen) => {
     setOpen(newOpen)
   }
+  const theme = useTheme()
+  const mediaQuery = useMediaQuery(theme.breakpoints.up("sm"))
 
   const [editData, setEditData] = useState({
     price: "",
@@ -46,12 +48,15 @@ export default function AddCardModal({
   }
 
   const DrawerList = (
-    <Box sx={{ width: 700 }} role="presentation">
-      <div id="add-card-container" className="w-full h-full">
-        <div className=" bg-slate-950">
+    <Box sx={{ width: 700, backgroundColor: "black" }} role="presentation">
+      <div
+        id="add-card-container"
+        className="w-full  flex justify-end lg:block h-full"
+      >
+        <div className=" bg-slate-950 ">
           <div className=" p-4  w-full ">
             <h1 className="text-3xl text-white">Diamond Name </h1>
-            <div>
+            <div className="">
               <TextField
                 id="outlined-basic"
                 label="Header Title"
@@ -102,6 +107,14 @@ export default function AddCardModal({
             </div>
             <div className="flex justify-center">
               <button
+                className="bg-orange-800 text-white hover:opacity-75 w-1/2 h-10 rounded-xl lg:hidden mt-10 cursor-pointer "
+                onClick={() => {
+                  toggleDrawer(false)
+                }}
+              >
+                Close
+              </button>
+              <button
                 className="bg-pink-700 text-white hover:opacity-75 w-1/2 h-10 rounded-xl mt-10 cursor-pointer "
                 onClick={() => {
                   updateData()
@@ -132,4 +145,3 @@ export default function AddCardModal({
     </div>
   )
 }
-// onClick={toggleDrawer(anchor, true)}

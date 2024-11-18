@@ -3,7 +3,6 @@
 import AddCardModal from "@/app/components/AddCardModal"
 import CardEditModal from "@/app/components/CardEditModal"
 import { BASE_LOCAL_URL } from "@/app/lib/utils/constants"
-import { AddCircle, Edit } from "@mui/icons-material"
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 
@@ -12,18 +11,22 @@ const DiamonCardEditPage = () => {
   const postUrl = BASE_LOCAL_URL
 
   const getDiamondData = async () => {
-    const diamondDataFetch = await axios.get(`${postUrl}api/diamonds`)
-    // console.log(diamondData.data, "header-=------")
-    setDiamondData(diamondDataFetch?.data)
+    try {
+      const diamondDataFetch = await axios.get(`${postUrl}/api/diamonds`)
+
+      setDiamondData(diamondDataFetch?.data)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   useEffect(() => {
     getDiamondData()
-  }, [])
+  }, [postUrl])
 
   const CardUI = () => {
     return (
-      <div className="grid grid-cols-3 gap-10 ">
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-10 ">
         {diamondData?.map((diamond, index) => {
           return (
             <div
@@ -61,7 +64,7 @@ const DiamonCardEditPage = () => {
       <div className="col-span-1 p-4  mb-4 mx-auto flex bg-gray-800 items-center">
         <AddCardModal refetch={getDiamondData} />
       </div>
-      <div className="">
+      <div className="  ">
         <CardUI />
       </div>
     </div>

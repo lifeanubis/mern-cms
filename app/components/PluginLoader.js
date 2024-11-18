@@ -36,11 +36,7 @@ const PluginLoader = () => {
   return (
     <div>
       {pluginComponents?.map(({ name, Component }, index) => (
-        <div
-          key={index}
-          style={{ marginBottom: "20px", backgroundColor: "red" }}
-        >
-          {/* {console.log(pluginComponents, "--------")} */}
+        <div key={index} style={{ marginBottom: "20px" }}>
           <h3>{name}</h3>
           <Component />
         </div>

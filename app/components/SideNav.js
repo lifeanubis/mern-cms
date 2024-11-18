@@ -1,4 +1,6 @@
+import { ArrowCircleLeft, ArrowCircleRight } from "@mui/icons-material"
 import Link from "next/link"
+import { useState } from "react"
 
 const SideNav = () => {
   return (
@@ -18,10 +20,13 @@ const SideNav = () => {
           ADD DIAMOND CARDS{" "}
         </div>
       </Link>
-      <div className="p-4 mb-2 h-auto bg-cyan-950 font-bold cursor-pointer hover:bg-opacity-75 ">
-        {" "}
-        BROWSE PLUGINS{" "}
-      </div>
+      <Link href={"/dashboard/browse-plugins"}>
+        <div className="p-4 mb-2 h-auto bg-cyan-950 font-bold cursor-pointer hover:bg-opacity-75 ">
+          {" "}
+          BROWSE PLUGINS{" "}
+        </div>
+      </Link>
+
       <Link href={"/dashboard/banner-page"}>
         <div className="p-4 mb-2 h-auto bg-cyan-950 font-bold cursor-pointer hover:bg-opacity-75 ">
           {" "}
