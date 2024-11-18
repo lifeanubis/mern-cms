@@ -4,6 +4,7 @@ import Header from "./components/Header"
 import { Card, Paper } from "@mui/material"
 import { useEffect, useState } from "react"
 import axios from "axios"
+import PluginLoader from "./components/PluginLoader"
 
 export default function Home() {
   const [diamondData, setDiamondData] = useState()
@@ -68,8 +69,10 @@ export default function Home() {
             }}
           />
         </div>
-        <div className="">
-          <CardUI />
+        <div className="bg-yellow-800">
+          adada
+          <PluginLoader />
+          {/* <CardUI /> */}
         </div>
       </div>
       {/* // <div>footer</div> */}
