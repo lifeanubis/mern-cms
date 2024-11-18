@@ -10,14 +10,23 @@ const Header = () => {
   const postUrl = BASE_LOCAL_URL
 
   const getHeaderData = async () => {
-    const headerData = await axios.get(`${postUrl}/api/header`)
-    // console.log(headerData.data, "header-=------")
-    setHeaderData(headerData.data)
+    try {
+      const headerData = await axios.get(`${postUrl}/api/header`)
+      setHeaderData(headerData?.data)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   useEffect(() => {
-    getHeaderData()
-  }, [])
+    if (postUrl !== undefined) {
+      getHeaderData()
+    }
+  }, [postUrl])
+
+  if (!postUrl) {
+    return null
+  }
 
   return (
     <div className="flex justify-end flex-1 bg-green-800 w-full">

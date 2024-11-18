@@ -11,20 +11,26 @@ export default function Home() {
   const [diamondData, setDiamondData] = useState()
   const [heroImageData, setHeroImageData] = useState()
   const postUrl = BASE_LOCAL_URL
+  console.log(postUrl, "-----aasdad--")
   const imageGlobal =
     "https://thumbs.dreamstime.com/z/banner-brilliant-cut-diamonds-flawless-perfect-jewelry-136807281.jpg"
 
   const getDiamondData = async () => {
-    const diamondDataFetch = await axios.get(`${postUrl}/api/diamonds`)
-    // console.log(diamondData.data, "header-=------")
-    const heroImageDataFetch = await axios.get(`${postUrl}/api/banner`)
-    setDiamondData(diamondDataFetch?.data)
-    setHeroImageData(heroImageDataFetch?.data[0]?.url)
+    try {
+      const diamondDataFetch = await axios.get(`${postUrl}/api/diamonds`)
+      const heroImageDataFetch = await axios.get(`${postUrl}/api/banner`)
+      setDiamondData(diamondDataFetch?.data)
+      setHeroImageData(heroImageDataFetch?.data[0]?.url)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   useEffect(() => {
-    getDiamondData()
-  }, [])
+    if (postUrl !== undefined) {
+      getDiamondData()
+    }
+  }, [postUrl])
 
   const CardUI = () => {
     return (
@@ -51,7 +57,7 @@ export default function Home() {
     )
   }
 
-  if (!BASE_LOCAL_URL) {
+  if (postUrl === undefined) {
     return null
   }
 
